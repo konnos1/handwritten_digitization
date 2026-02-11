@@ -114,13 +114,13 @@ def test_greek_support_strict(font_path):
 
 print("Testing fonts for REAL Greek support")
 
-# Test fonts in batches (faster)
+# Test fonts in batches
 greek_fonts = []
 for font_path in tqdm(all_fonts, desc="Validating fonts"):
     if test_greek_support_strict(font_path):
         greek_fonts.append(font_path)
 
-    # Stop after finding 20 good fonts (enough variety)
+    # Stop after finding 20 good fonts
     if len(greek_fonts) >= 20:
         break
 
