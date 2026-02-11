@@ -112,7 +112,7 @@ def test_greek_support_strict(font_path):
     except Exception as e:
         return False
 
-print("Testing fonts for REAL Greek support (this may take 30-60 seconds)...")
+print("Testing fonts for REAL Greek support")
 
 # Test fonts in batches (faster)
 greek_fonts = []
@@ -316,7 +316,7 @@ def create_synthetic_final_sigmas(database, fonts, output_folder, count=300):
         angle = random.uniform(-15, 15)
         img = img.rotate(angle, fillcolor='white', expand=True)
 
-        # D. Crop (Χρήση της τοπικής helper function)
+        # D. Crop
         img = crop_char_img_helper(img)
 
         # 3. Save
@@ -352,7 +352,7 @@ def add_strong_accent(img, is_upper=False):
     width = right - left
     height = bottom - top
 
-    stroke_width = max(3, int(height * 0.08))  # Από 0.05 → 0.08
+    stroke_width = max(3, int(height * 0.08)) 
     stroke_len = int(width * 0.3)
 
     ink_color = (0, 0, 0)  # Pure black
@@ -821,7 +821,7 @@ for phase_name, num_samples in dataset_structure:
         else:
             # ΕΠΙΛΟΓΗ ΛΕΞΙΚΟΥ ΑΝΑΛΟΓΑ ΜΕ ΤΗ ΦΑΣΗ
             if phase_name == 'handwritten_hard':
-                num_words = random.randint(2, 5) # Λίγο μεγαλύτερες προτάσεις
+                num_words = random.randint(2, 5)
 
                 # 50% πιθανότητα να πάρει από το γενικό λεξικό
                 # 50% πιθανότητα να πάρει από το ιατρικό λεξιλόγιο
@@ -907,7 +907,7 @@ for dir_path, data_list, zip_path, name in outputs:
         print(f"\n Processing {name}...")
 
         df = pd.DataFrame(data_list)
-        df = df.sample(frac=1, random_state=SEED).reset_index(drop=True) # Shuffle
+        df = df.sample(frac=1, random_state=SEED).reset_index(drop=True) 
 
         csv_path = os.path.join(dir_path, 'train.csv')
         df.to_csv(csv_path, index=False)
@@ -915,7 +915,7 @@ for dir_path, data_list, zip_path, name in outputs:
         print(f"   Samples: {len(df)}")
         print(f"   Zipping to: {zip_path}")
 
-        base_name = os.path.splitext(zip_path)[0] # remove .zip extension for shutil
+        base_name = os.path.splitext(zip_path)[0] 
         shutil.make_archive(base_name, 'zip', dir_path)
 
         # Verify
