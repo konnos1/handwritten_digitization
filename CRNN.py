@@ -455,3 +455,24 @@ trainer = ResearchTrainer(model, char2idx, idx2char)
 # 4. Run Stages
 for stage in STAGES:
     trainer.run_stage(stage, stats_cache)
+
+def save_project_metadata(output_dir, char2idx, idx2char, model_params):
+    metadata = {
+        'char2idx': char2idx,
+        'idx2char': idx2char,
+        'vocab_size': len(char2idx) + 1,
+        'model_params': model_params
+    }
+
+    save_path = os.path.join(output_dir, 'metadata.json')
+    with open(save_path, 'w', encoding='utf-8') as f:
+        json.dump(metadata, f, ensure_ascii=False, indent=4)
+
+    print(f"Metadata saved to: {save_path}")
+
+save_project_metadata(
+    BASE_OUTPUT_DIR,
+    char2idx,
+    idx2char,
+    {'hidden_size': 128, 'img_height': 128, 'img_width': 512}
+)
